@@ -143,7 +143,7 @@ public class MyAnimalShop implements AnimalShop {
     @Override
     public void costomer( Costomer costomer) {
         try{
-            int j;
+            int j,o;
             int flag=0;
             for(j=0;j<costomers.size();j++){
                 Costomer currCostomer;
@@ -152,6 +152,16 @@ public class MyAnimalShop implements AnimalShop {
                     flag=1;
                     currCostomer.setFrequency(currCostomer.getFrequency()+1);
                     currCostomer.setTime(costomer.getTime());
+                    for(o=0;o<dayCostomers.size();o++){
+                        if(dayCostomers.get(o).getName().equals(costomers.get(j).getName())){
+                            dayCostomers.get(o).setFrequency(dayCostomers.get(o).getFrequency()+1);
+                            dayCostomers.get(o).setTime(costomers.get(j).getTime());
+                            break;
+                        }
+                    }
+                    if(o==dayCostomers.size()){
+                        dayCostomers.add(currCostomer);
+                    }
                     dayCostomers.add(costomers.get(j));
                     break;
                 }
